@@ -33,10 +33,22 @@ class TestingController<s> {
         return userRepository.findById(user.getId());
     }
 
-    @PutMapping("/update")
-    public User Update(@RequestBody User user){
-        userRepository.update(new User(user.getId(), user.getName(), user.getSalary()));
-        return userRepository.findById(user.getId());
+    @PutMapping("/update/{id}")
+    public Map<String, String> Update(@PathVariable String id, @RequestBody User user){
+        User userFind = userRepository.findById(id);
+        if (userFind != null){
+            userFind.setName(user.getName());
+            userFind.setSalary(user.getSalary());
+            userRepository.update(userFind);
+            Map<String, String> response = new HashMap<String, String>();
+            response.put("message", "Success update");
+            return response;
+        }else{
+            Map<String, String> response = new HashMap<String, String>();
+            response.put("message", "User not found with id "+id);
+            return response;
+        }
+
     }
 
     @DeleteMapping("/delete/{id}")
