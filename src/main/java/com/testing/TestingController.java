@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-
-class TestingController<s> {
+class TestingController {
 
     @Autowired
     private UserRepository userRepository;
