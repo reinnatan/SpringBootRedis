@@ -18,7 +18,7 @@ class TestingController {
 
     @GetMapping("/users")
     public Map<String, User> GetAll(){
-        return userRepository.findAll();
+        return userRepository.findAllUsers();
     }
 
     @GetMapping("/user/{id}")
@@ -28,7 +28,7 @@ class TestingController {
 
     @PostMapping("/add")
     public User add(@RequestBody User user){
-        userRepository.save(user);
+        userRepository.saveUser(user);
         return userRepository.findById(user.getId());
     }
 

@@ -1,8 +1,13 @@
 package com.testing;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "User")
 public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String name;
     private Long salary;
